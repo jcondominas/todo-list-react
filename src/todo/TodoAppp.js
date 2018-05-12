@@ -29,12 +29,8 @@ export default class TodoApp extends React.Component {
         return (
             <AppContext.Provider value={app}>
                 <MuiThemeProvider theme={theme}>
-                    <section>
-                        <Header/>
-                    </section>
-                    <section>
-                        <Todos/>
-                    </section>
+                    <Header/>
+                    <Todos/>
                 </MuiThemeProvider>
             </AppContext.Provider>
         )
