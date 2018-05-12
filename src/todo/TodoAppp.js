@@ -23,8 +23,6 @@ const app = {
 export const AppContext = React.createContext(app);
 
 export default class TodoApp extends React.Component {
-
-
     render() {
         return (
             <AppContext.Provider value={app}>
