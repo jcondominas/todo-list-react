@@ -1,44 +1,47 @@
 import Paper from 'material-ui/Paper'
 import React from "react";
 import style from './Todos.css'
-import TextField from "material-ui/TextField";
+import FormTodo from "./FormTodos";
+import TodoList from "./TodoList";
 
-class Todos extends React.Component {
+const todosExamples = [
+    {title: "Comprar roba per en Gil i l'Emma", id: 1},
+    {title: "Avisar metge per el dolor de genoll", id: 2},
+];
+
+export default class Todos extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = {
-            value: ""
-        }
+        this.state = {todos: todosExamples};
+        this.todoIdIncremental = 3;
+        this.onTodoRemove = this.onTodoRemove.bind(this);
+        this.onTodoAdded = this.onTodoAdded.bind(this)
     }
 
-    handleChange(event) {
+    onTodoRemove(todoId) {
+        const newTodoList = this.state.todos.filter((todo) => {
+            return todo.id !== todoId
+        });
         this.setState({
-            value: event.target.value
+            todos: newTodoList
         })
     }
 
-    handleFormSubmit(event) {
-        event.preventDefault();
-        console.log(this.state.value)
-        this.setState({
-            value: ""
-        })
+    onTodoAdded(todo) {
+        const newTodoList = [...this.state.todos, {title: todo, id: this.todoIdIncremental}];
+        this.todoIdIncremental += 1;
+        this.setState({todos: newTodoList})
     }
+
 
     render() {
         return (
-            <Paper elevation="4" className={style.paper}>
-                <form autoComplete="off" onSubmit={(event) => {
-                    this.handleFormSubmit(event);
-                }}>
-                    <TextField label="Add a todo" margin="normal" className={style.editor} value={this.state.value}
-                               onChange={(event) => {
-                                   this.handleChange(event)
-                               }}/>
-                </form>
+            <Paper elevation={4} className={style.paper}>
+                <FormTodo listeners={{onTodoAdded: this.onTodoAdded}}/>
+                <TodoList todos={this.state.todos}
+                          listeners={{checked: this.onTodoRemove}}/>
             </Paper>
         )
     }
 }
-
-export default Todos;
