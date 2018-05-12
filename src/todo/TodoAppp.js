@@ -1,8 +1,9 @@
 import React from "react";
-import Button from 'material-ui/Button'
-import MuiThemeProvider from "material-ui/es/styles/MuiThemeProvider";
-import createMuiTheme from "material-ui/es/styles/createMuiTheme";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import createMuiTheme from "material-ui/styles/createMuiTheme";
 import purple from "material-ui/es/colors/purple";
+import Header from "./Header";
+import Todos from "./Todos";
 
 const theme = createMuiTheme({
     palette: {
@@ -15,21 +16,28 @@ const theme = createMuiTheme({
     }
 });
 
+const app = {
+    title: "Todo list App"
+};
+
+export const AppContext = React.createContext(app);
+
 export default class TodoApp extends React.Component {
 
 
     render() {
         return (
-            <MuiThemeProvider theme={theme}>
-                <div>
-                    <Button variant='raised' color="primary">
-                        Hello World
-                    </Button>
-                    <Button variant='raised' color="secondary">
-                        Hello World
-                    </Button>
-                </div>
-            </MuiThemeProvider>
+            <AppContext.Provider value={app}>
+                <MuiThemeProvider theme={theme}>
+                    <section>
+                        <Header/>
+                    </section>
+                    <section>
+                        <Todos/>
+                    </section>
+                </MuiThemeProvider>
+            </AppContext.Provider>
         )
     }
 }
+

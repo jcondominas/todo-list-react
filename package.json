@@ -93,7 +93,8 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "env"
     ]
   },
   "eslintConfig": {

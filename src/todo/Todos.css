@@ -1,0 +1,11 @@
+.paper {
+    width: 60%;
+    margin: 40px auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.editor {
+    width: 100%;
+    /*margin-right: 40px;*/
+}
