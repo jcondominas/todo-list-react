@@ -1,10 +1,9 @@
 import React from 'react'
 import Typography from 'material-ui/Typography'
-import CheckBox from 'material-ui/Checkbox'
 import style from './TodoList.css'
 
 
-const TodoList = (props) => {
+const CompletedTodolist = (props) => {
     return (
         props.todos.map((todo) =>
             <TodoElement todo={todo} key={todo.id} listeners={props.listeners}/>
@@ -15,14 +14,11 @@ const TodoList = (props) => {
 const TodoElement = (props) => {
     return (
         <div className={style.todoElement}>
-            <CheckBox onChange={() => {
-                props.listeners.checked(props.todo.id)
-            }}/>
-            <Typography variant="display1" className={style.todoText}>
+            <Typography variant="subheading" className={`${style.todoText} ${style.completedTodoText}`}>
                 {props.todo.title}
             </Typography>
         </div>
     )
 }
 
-export default TodoList;
+export default CompletedTodolist;

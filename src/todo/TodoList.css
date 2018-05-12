@@ -7,3 +7,8 @@
 .todoText {
     margin-right: 20px;
 }
+
+.todoText.completedTodoText {
+    text-decoration: line-through;
+color: darkgray;
+}
