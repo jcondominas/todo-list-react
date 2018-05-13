@@ -3,7 +3,7 @@ import Paper from "material-ui/Paper";
 import Divider from "material-ui/Divider";
 import AddTodoToList from "./FormTodos";
 import TodoList from "./TodoList";
-import CompletedTodolist from "./CompletedTodoList";
+import CompletedTodoList from "./CompletedTodoList";
 import PropTypes from 'prop-types'
 import style from './Todos.css'
 
@@ -11,11 +11,11 @@ import style from './Todos.css'
 const Todos = ({onTodoAdded, todos, completedTodos, onTodoClicked}) => {
     return (
         <Paper elevation={4} className={style.paper}>
-            <AddTodoToList listeners={onTodoAdded}/>
+            <AddTodoToList onTodoAdded={onTodoAdded}/>
             <TodoList todos={todos}
-                      listeners={onTodoClicked}/>
+                      onTodoClicked={onTodoClicked}/>
             {(completedTodos.length > 0) && (todos.length > 0) && <Divider/>}
-            <CompletedTodolist todos={completedTodos}/>
+            <CompletedTodoList todos={completedTodos}/>
         </Paper>
     )
 };

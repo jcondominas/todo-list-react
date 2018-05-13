@@ -1,12 +1,14 @@
 import React from 'react'
 import Typography from 'material-ui/Typography'
 import style from './TodoList.css'
+import TodoList from "./TodoList";
+import PropTypes from "prop-types";
 
 
-const CompletedTodolist = (props) => {
+const CompletedTodoList = ({todos}) => {
     return (
-        props.todos.map((todo) =>
-            <TodoElement todo={todo} key={todo.id} listeners={props.listeners}/>
+        todos.map((todo) =>
+            <TodoElement todo={todo} key={todo.id}/>
         )
     )
 };
@@ -21,4 +23,11 @@ const TodoElement = (props) => {
     )
 };
 
-export default CompletedTodolist;
+export default CompletedTodoList;
+
+TodoList.propTypes = {
+    todos: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+    })).isRequired,
+}

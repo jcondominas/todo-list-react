@@ -1,6 +1,7 @@
 import React from "react";
 import style from './Todos.css'
 import TextField from "material-ui/TextField";
+import PropTypes from 'prop-types'
 
 export default class AddTodoToList extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export default class AddTodoToList extends React.Component {
     handleFormSubmit(event) {
         event.preventDefault();
         console.log(this.state.value);
-        this.props.listeners(this.state.value);
+        this.props.onTodoAdded(this.state.value);
         this.setState({
             value: ""
         })
@@ -38,3 +39,7 @@ export default class AddTodoToList extends React.Component {
         )
     }
 }
+
+AddTodoToList.propTypes = {
+    onTodoAdded: PropTypes.func.isRequired,
+};

@@ -10,5 +10,5 @@
 
 .todoText.completedTodoText {
     text-decoration: line-through;
-color: darkgray;
+    color: darkgray;
 }

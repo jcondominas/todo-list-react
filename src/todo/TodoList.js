@@ -6,10 +6,9 @@ import PropTypes from 'prop-types'
 
 
 const TodoList = (props) => {
-    console.log(props.todos);
     return (
         props.todos.map((todo) =>
-            <TodoElement {...todo} key={todo.id} onClick={props.listeners}/>
+            <TodoElement {...todo} key={todo.id} onClick={props.onTodoClicked}/>
         )
     )
 };
@@ -28,6 +27,14 @@ const TodoElement = ({title, id, onClick}) => {
 };
 
 export default TodoList;
+
+TodoList.propTypes = {
+    todos: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+    })).isRequired,
+    onTodoClicked: PropTypes.func.isRequired
+}
 
 TodoElement.propTypes = {
     onClick: PropTypes.func.isRequired,
