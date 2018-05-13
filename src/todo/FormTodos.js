@@ -19,7 +19,7 @@ export default class FormTodo extends React.Component {
     handleFormSubmit(event) {
         event.preventDefault();
         console.log(this.state.value);
-        this.props.listeners.onTodoAdded(this.state.value);
+        this.props.listeners(this.state.value);
         this.setState({
             value: ""
         })

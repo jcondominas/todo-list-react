@@ -1,10 +1,5 @@
-import Paper from 'material-ui/Paper'
-import Divider from 'material-ui/Divider'
 import React from "react";
-import style from './Todos.css'
-import FormTodo from "./FormTodos";
-import TodoList from "./TodoList";
-import CompletedTodolist from "./CompletedTodoList";
+import TodosPresenter from "./TodosPresenter";
 
 const todosExamples = [
     {title: "Comprar roba per en Gil i l'Emma", id: 0},
@@ -47,13 +42,11 @@ export default class Todos extends React.Component {
 
     render() {
         return (
-            <Paper elevation={4} className={style.paper}>
-                <FormTodo listeners={{onTodoAdded: this.onTodoAdded}}/>
-                <TodoList todos={this.state.todos}
-                          listeners={{checked: this.onTodoRemove}}/>
-                {(this.state.completedTodos.length > 0) && (this.state.todos.length > 0) && <Divider/>}
-                <CompletedTodolist todos={this.state.completedTodos}/>
-            </Paper>
+            <TodosPresenter todos={[...this.state.todos]} completedTodos={[...this.state.completedTodos]} onTodoAdded={(todo) => {
+                this.onTodoAdded(todo)
+            }} onTodoClicked={(id) => {
+                this.onTodoRemove(id)
+            }}/>
         )
     }
 }
