@@ -1,7 +1,7 @@
 import React from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Header from "./Header";
-import TodosContainer2 from "./TodosContainer2";
+import TodosContainer2 from "./TodosContainer";
 import {theme} from "./TodoTheme";
 
 const app = {

@@ -1,52 +1,18 @@
-import React from "react";
+import {connect} from 'react-redux'
+import {addTodo, removeTodo} from './redux/todos/actions'
 import Todos from "./Todos";
 
-const todosExamples = [
-    {title: "Comprar roba per en Gil i l'Emma", id: 0},
-    {title: "Avisar metge per el dolor de genoll", id: 1},
-];
-
-export default class TodosContainer extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            todos: todosExamples,
-            completedTodos: [{title: "Avisar metge per el dolor de genoll", id: -1}]
-        };
-        this.currentId = this.state.todos.length;
-        this.onTodoRemove = this.onTodoRemove.bind(this);
-        this.onTodoAdded = this.onTodoAdded.bind(this)
+const mapStateToProps = (state) => {
+    return {
+        todos: state.listTodos.todos,
+        completedTodos: state.listTodos.completedTodos
     }
+};
 
-    onTodoRemove(todoId) {
-        const newTodoList = this.state.todos.filter((todo) => {
-            return todo.id !== todoId
-        });
-        const todoCompleted = this.state.todos.find((todo) => {
-            return todo.id === todoId
-        });
-        this.setState({
-            todos: newTodoList,
-            completedTodos: [...this.state.completedTodos, todoCompleted]
-        })
-    }
+const mapDispatchToProps = dispatch => ({
+    onTodoClicked: id => dispatch(removeTodo(id)),
+    onTodoAdded: text => dispatch(addTodo(text))
+});
 
-    onTodoAdded(todo) {
-        if (todo !== "") {
-            const newTodoList = [...this.state.todos, {title: todo, id: this.currentId++}];
-            this.setState({todos: newTodoList})
-        }
-    }
-
-
-    render() {
-        return (
-            <Todos todos={[...this.state.todos]} completedTodos={[...this.state.completedTodos]} onTodoAdded={(todo) => {
-                this.onTodoAdded(todo)
-            }} onTodoClicked={(id) => {
-                this.onTodoRemove(id)
-            }}/>
-        )
-    }
-}
+export default connect(mapStateToProps,
+    mapDispatchToProps)(Todos)

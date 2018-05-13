@@ -1,12 +1,10 @@
-import {todosReducer} from './todosReducer'
-import {completedTodosReducer} from './completedTodosReducer'
 import reducer from './reducers'
+import {todosReducer, completedTodosReducer} from './reducers'
 import expect from 'expect'
-import {addTodo, removeTodo} from "../actions";
+import {addTodo, removeTodo} from "./actions";
 
 describe('Reducers should', () => {
     describe('Todos reducer should', () => {
-        let initialState = []
         it("return initial state", () => {
             expect(todosReducer(undefined, "")).toEqual(
                 []
@@ -21,11 +19,11 @@ describe('Reducers should', () => {
             expect(todosReducer([{title: 'Test', id: 1}], removeTodo(1))).toEqual(
                 []
             )
-        })
+        });
         it('should not add a new todo with empty text', () => {
             expect(todosReducer([], addTodo(""))).toEqual(
                 []
-            )
+            );
             expect(todosReducer([], addTodo(undefined))).toEqual(
                 []
             )
@@ -33,21 +31,21 @@ describe('Reducers should', () => {
     });
 
     describe("CompletedTodos reducer should", () => {
-        let initialState = []
+        let initialState = [];
         it("should return initial state", () => {
             expect(completedTodosReducer(undefined, '', [])).toEqual(
                 []
             )
-        })
+        });
         it('should return one completed task when remove from todos', () => {
             expect(completedTodosReducer(initialState, removeTodo(0), [{title: 'Test', id: 0}])).toEqual(
                 [{title: 'Test', id: 0}]
             )
         });
-    })
+    });
 
     describe('Listtodos reducers', () => {
-        let initialState = {listTodos: {todos: [], completedTodos: []}}
+        let initialState = {listTodos: {todos: [], completedTodos: []}};
         it('should return initial state', () => {
             expect(reducer(undefined, "")).toEqual(
                 {listTodos: {todos: [], completedTodos: []}}
