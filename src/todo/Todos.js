@@ -1,52 +1,42 @@
-import React from "react";
-import TodosPresenter from "./TodosPresenter";
-
-const todosExamples = [
-    {title: "Comprar roba per en Gil i l'Emma", id: 0},
-    {title: "Avisar metge per el dolor de genoll", id: 1},
-];
-
-export default class Todos extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            todos: todosExamples,
-            completedTodos: [{title: "Avisar metge per el dolor de genoll", id: -1}]
-        };
-        this.currentId = this.state.todos.length;
-        this.onTodoRemove = this.onTodoRemove.bind(this);
-        this.onTodoAdded = this.onTodoAdded.bind(this)
-    }
-
-    onTodoRemove(todoId) {
-        const newTodoList = this.state.todos.filter((todo) => {
-            return todo.id !== todoId
-        });
-        const todoCompleted = this.state.todos.find((todo) => {
-            return todo.id === todoId
-        });
-        this.setState({
-            todos: newTodoList,
-            completedTodos: [...this.state.completedTodos, todoCompleted]
-        })
-    }
-
-    onTodoAdded(todo) {
-        if (todo !== "") {
-            const newTodoList = [...this.state.todos, {title: todo, id: this.currentId++}];
-            this.setState({todos: newTodoList})
-        }
-    }
+import React from 'react'
+import Paper from "material-ui/Paper";
+import Divider from "material-ui/Divider";
+import AddTodoToList from "./FormTodos";
+import TodoList from "./TodoList";
+import CompletedTodolist from "./CompletedTodoList";
+import PropTypes from 'prop-types'
+import style from './Todos.css'
 
 
-    render() {
-        return (
-            <TodosPresenter todos={[...this.state.todos]} completedTodos={[...this.state.completedTodos]} onTodoAdded={(todo) => {
-                this.onTodoAdded(todo)
-            }} onTodoClicked={(id) => {
-                this.onTodoRemove(id)
-            }}/>
-        )
-    }
+const Todos = ({onTodoAdded, todos, completedTodos, onTodoClicked}) => {
+    console.log(completedTodos);
+    console.log(todos);
+    return (
+        <Paper elevation={4} className={style.paper}>
+            <AddTodoToList listeners={onTodoAdded}/>
+            <TodoList todos={todos}
+                      listeners={onTodoClicked}/>
+            {(completedTodos.length > 0) && (todos.length > 0) && <Divider/>}
+            <CompletedTodolist todos={completedTodos}/>
+        </Paper>
+    )
 }
+
+export default Todos;
+
+Todos.propTypes = {
+    onTodoClicked: PropTypes.func.isRequired,
+    onTodoAdded: PropTypes.func.isRequired,
+    todos: PropTypes.arrayOf(PropTypes.shape(
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            id: PropTypes.number.isRequired
+        }).isRequired
+    )).isRequired,
+    completedTodos: PropTypes.arrayOf(PropTypes.shape(
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            id: PropTypes.number.isRequired
+        }).isRequired
+    )).isRequired,
+};

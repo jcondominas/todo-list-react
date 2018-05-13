@@ -3,7 +3,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import createMuiTheme from "material-ui/styles/createMuiTheme";
 import purple from "material-ui/es/colors/purple";
 import Header from "./Header";
-import Todos from "./Todos";
+import TodosContainer from "./TodosContainer";
 
 const theme = createMuiTheme({
     palette: {
@@ -28,7 +28,7 @@ export default class TodoApp extends React.Component {
             <AppContext.Provider value={app}>
                 <MuiThemeProvider theme={theme}>
                     <Header/>
-                    <Todos/>
+                    <TodosContainer/>
                 </MuiThemeProvider>
             </AppContext.Provider>
         )

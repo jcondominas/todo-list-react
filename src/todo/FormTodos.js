@@ -2,7 +2,7 @@ import React from "react";
 import style from './Todos.css'
 import TextField from "material-ui/TextField";
 
-export default class FormTodo extends React.Component {
+export default class AddTodoToList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
