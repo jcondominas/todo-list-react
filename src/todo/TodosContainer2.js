@@ -3,8 +3,6 @@ import {addTodo, removeTodo} from './redux/actions'
 import Todos from "./Todos";
 
 const mapStateToProps = (state) => {
-    console.log("Completed todos");
-    console.log(state);
     return {
         todos: state.listTodos.todos,
         completedTodos: state.listTodos.completedTodos

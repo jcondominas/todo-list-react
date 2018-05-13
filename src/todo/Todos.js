@@ -9,8 +9,6 @@ import style from './Todos.css'
 
 
 const Todos = ({onTodoAdded, todos, completedTodos, onTodoClicked}) => {
-    console.log("Todos view");
-    console.log(completedTodos);
     return (
         <Paper elevation={4} className={style.paper}>
             <AddTodoToList listeners={onTodoAdded}/>
