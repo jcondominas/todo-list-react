@@ -1,20 +1,8 @@
 import React from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import createMuiTheme from "material-ui/styles/createMuiTheme";
-import purple from "material-ui/es/colors/purple";
 import Header from "./Header";
 import TodosContainer2 from "./TodosContainer2";
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: purple[500]
-        },
-        secondary: {
-            main: "#11cb5f"
-        }
-    }
-});
+import {theme} from "./TodoTheme";
 
 const app = {
     title: "Todo list App"
