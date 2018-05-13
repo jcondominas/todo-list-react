@@ -3,9 +3,11 @@ import TodoApp from "./todo/TodoAppp";
 import {createStore} from "redux";
 import Provider from "react-redux/src/components/Provider";
 import rootReducers from './todo/redux/reducers'
+import {composeWithDevTools} from 'redux-devtools-extension';
 
-
-const store = createStore(rootReducers);
+const store = createStore(rootReducers,
+    composeWithDevTools()
+);
 
 class App extends Component {
     render() {

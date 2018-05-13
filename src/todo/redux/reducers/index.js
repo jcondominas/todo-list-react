@@ -1,35 +1,37 @@
 import {combineReducers} from 'redux'
 
-const initialState = {
-    todos: [],
-    completedTodos: []
+const completedTodosReducer = (state = [], action, todos) => {
+    if (action.type === "REMOVE_TODO") {
+        return state.concat(
+            todos.find(todo => {
+                return todo.id === action.id
+            })
+        )
+    } else {
+        return state
+    }
 }
 
-const todos = (state = initialState, action) => {
+const todosReducer = (state = [], action) => {
     switch (action.type) {
-        case "REMOVE_TODO":
-            return ({
-                ...state,
-                todos: state.todos.filter((todo) => {
-                    return todo.id !== action.id
-                }),
-                completedTodos:
-                    state.completedTodos.concat(
-                        state.todos.find(todo => {
-                            return todo.id === action.id
-                        })
-                    )
-            });
         case "ADD_TODO":
-            return ({
-                ...state,
-                todos: state.todos.concat(
-                    {title: action.text, id: action.id}
-                )
-            });
+            return state.concat(
+                {title: action.text, id: action.id}
+            );
+        case "REMOVE_TODO":
+            return state.filter(todo => {
+                    return todo.id !== action.id
+                }
+            );
         default:
             return state;
     }
 };
 
-export default combineReducers({todos})
+const rootState = (state = {}, action) => {
+    let todos = todosReducer(state.todos, action);
+    let completedTodos = completedTodosReducer(state.completedTodos, action, state.todos);
+    return {...state, todos: todos, completedTodos: completedTodos}
+}
+
+export default combineReducers({listTodos: rootState})
