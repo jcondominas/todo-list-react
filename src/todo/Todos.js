@@ -10,7 +10,6 @@ import style from './Todos.css'
 
 const Todos = ({onTodoAdded, todos, completedTodos, onTodoClicked}) => {
     console.log(completedTodos);
-    console.log(todos);
     return (
         <Paper elevation={4} className={style.paper}>
             <AddTodoToList listeners={onTodoAdded}/>
@@ -20,23 +19,23 @@ const Todos = ({onTodoAdded, todos, completedTodos, onTodoClicked}) => {
             <CompletedTodolist todos={completedTodos}/>
         </Paper>
     )
-}
+};
 
 export default Todos;
 
 Todos.propTypes = {
     onTodoClicked: PropTypes.func.isRequired,
     onTodoAdded: PropTypes.func.isRequired,
-    todos: PropTypes.arrayOf(PropTypes.shape(
+    todos: PropTypes.arrayOf(
         PropTypes.shape({
             title: PropTypes.string.isRequired,
             id: PropTypes.number.isRequired
-        }).isRequired
-    )).isRequired,
-    completedTodos: PropTypes.arrayOf(PropTypes.shape(
+        })
+    ).isRequired,
+    completedTodos: PropTypes.arrayOf(
         PropTypes.shape({
             title: PropTypes.string.isRequired,
             id: PropTypes.number.isRequired
-        }).isRequired
-    )).isRequired,
+        })
+    ).isRequired
 };
