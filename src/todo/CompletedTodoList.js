@@ -19,6 +19,6 @@ const TodoElement = (props) => {
             </Typography>
         </div>
     )
-}
+};
 
 export default CompletedTodolist;
