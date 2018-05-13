@@ -1,7 +1,11 @@
 import {combineReducers} from 'redux'
+import {
+    REMOVE_TODO,
+    ADD_TODO
+} from '../actions'
 
 const completedTodosReducer = (state = [], action, todos) => {
-    if (action.type === "REMOVE_TODO") {
+    if (action.type === ADD_TODO) {
         return state.concat(
             todos.find(todo => {
                 return todo.id === action.id
@@ -14,11 +18,11 @@ const completedTodosReducer = (state = [], action, todos) => {
 
 const todosReducer = (state = [], action) => {
     switch (action.type) {
-        case "ADD_TODO":
+        case ADD_TODO:
             return state.concat(
                 {title: action.text, id: action.id}
             );
-        case "REMOVE_TODO":
+        case REMOVE_TODO:
             return state.filter(todo => {
                     return todo.id !== action.id
                 }
