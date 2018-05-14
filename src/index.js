@@ -4,7 +4,7 @@ import {create} from "jss";
 import JssProvider from "react-jss/lib/JssProvider";
 import {createGenerateClassName, jssPreset} from "material-ui/styles";
 import registerServiceWorker from './registerServiceWorker';
-import App from "./App";
+import TodoApp from "./TodoApp";
 
 
 const generateClassName = createGenerateClassName();
@@ -13,7 +13,7 @@ jss.options.insertionPoint = document.getElementById('jss-insertion-point');
 
 ReactDOM.render(
     <JssProvider jss={jss} generateClassName={generateClassName}>
-        <App/>
+        <TodoApp/>
     </JssProvider>, document.getElementById('root'));
 registerServiceWorker();
 
