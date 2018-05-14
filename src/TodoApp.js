@@ -1,7 +1,7 @@
 import React from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Header from "./components/header/Header";
-import TodosContainer2 from "./containers/TodosContainer";
+import TodoListContainer from "./containers/TodoListContainer";
 import {theme} from "./components/todolist/TodoTheme";
 import {store} from "./store/index";
 import {Provider} from "react-redux";
@@ -19,7 +19,7 @@ export default class TodoApp extends React.Component {
                 <AppContext.Provider value={app}>
                     <MuiThemeProvider theme={theme}>
                         <Header/>
-                        <TodosContainer2/>
+                        <TodoListContainer/>
                     </MuiThemeProvider>
                 </AppContext.Provider>
             </Provider>
