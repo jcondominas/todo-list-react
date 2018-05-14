@@ -6,7 +6,7 @@ import {theme} from "./components/todolist/TodoTheme";
 import {store} from "./store/index";
 import {Provider} from "react-redux";
 
-const app = {
+export const app = {
     title: "Todo list App"
 };
 
