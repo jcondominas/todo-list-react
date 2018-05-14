@@ -31,7 +31,7 @@ export default class AddTodoToList extends React.Component {
             <form autoComplete="off" onSubmit={(event) => {
                 this.handleFormSubmit(event);
             }}>
-                <TextField label="Add a todo" margin="normal" className={style.editor} value={this.state.value}
+                <TextField label="Create a new Todo" margin="normal" className={style.editor} value={this.state.value}
                            onChange={(event) => {
                                this.handleChange(event)
                            }}/>
